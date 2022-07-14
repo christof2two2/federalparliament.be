@@ -1,5 +1,5 @@
 <template>
-    <div class="topBar dark">
+    <div class="topBar">
        
          <div class="logo">
           <router-link  class = "Home" to="/"><img src="../assets/icon.png"></router-link>
@@ -13,15 +13,8 @@
          </nav> 
          </li>
          <li class="darkModeButton">
-         <button v-on:click="toggleDarkMode()">
-           <span v-if="this.darkMode"> 
-            <img src="@/assets/icon.png">
-           </span>
-           <span v-else>
-             <img src="@/assets/icon.png">
-             </span>
-           
-         </button>
+            <img class ="darkmodeToggleButton" v-if="darkMode" v-on:click="toggleDarkMode()" src="@/assets/lightMode.png">
+            <img class="" v-else v-on:click="toggleDarkMode()" src="@/assets/darkMode.svg"> 
           </li>
         </ul>
        
@@ -31,14 +24,21 @@
 <script>
 export default {
   name: 'topBar',
-  props:{},
+      data(){
+      return{
+      }
+    },
   methods:{
+
     toggleDarkMode(){
-      console.log("test");
-      this.darkMode = !this.darkMode;
-      console.log(this.darkMode);
+      this.darkMode = !this.darkMode
+      if (this.darkMode){document.getElementById("app").classList.add("dark")}
+      else{document.getElementById("app").classList.remove("dark")}
+      this.$forceUpdate();
     }
-  }
+    },
+
+  
 }
 </script>
 
@@ -50,24 +50,24 @@ img {
  
 }
 nav {
-  background-color: aqua;
   padding: 0
 
 }
 .rlink{
   text-decoration: none;
   margin-left: 60px;
+  color: var(--primary);
 }
 .topBar {
-background: lightblue;  
 display:flex;
 align-items: center;
 display: flexbox;
 float: top;
 }
-
+.darkmodeToggleButton{
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(105%);
+}
 .menu {
-   background-color: indianred;
    padding:0;
    margin: 0%;
    list-style-type: none;
@@ -78,11 +78,12 @@ float: top;
 }
 
 .router-link-active{
-color: lightcoral;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
  }
  button{
 margin-left: 20px;
-background-color: chocolate;
 
  }
 
@@ -92,10 +93,16 @@ background-color: chocolate;
 
 .darkModeButton{
   cursor: pointer;
+  margin-left: 15px;
+  height: 20px;
+  width: 20px;
+
 }
 
- .dark.topBar {
-   background-color: grey;
-   background: grey
- }
+.darkModeButton img{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
 </style>

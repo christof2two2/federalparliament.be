@@ -70,7 +70,6 @@ export default {
   left: 0;
   position: relative;
   float: left;
-  background-color: gold;
 }
 .sideBarMenu{
   list-style: none;

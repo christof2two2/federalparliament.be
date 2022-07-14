@@ -28,7 +28,6 @@ export default {
 }
 .content{
   top: 0;
-  background-color: lightsalmon;
   width:50%;
 
   display: inline-block;
