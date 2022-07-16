@@ -2,9 +2,8 @@
   <div class="content">
          <button v-on:click="runningQuery=!runningQuery"> set query running to true </button>
          <button v-on:click="myFunction_set()"> change spinner color </button>
-         <h1>{{darkMode}}</h1>
 
-    <h1>Quzeying dink</h1>
+    <h1>Query</h1>
     
     <div class="queryDiv">
     <textarea v-model="queryText" class="queryField" type="text"> </textarea>
@@ -16,23 +15,36 @@
     </div>
     <div class="queryResult">
       <h1>Output</h1>
-    <div v-if="queryResultState=='good'">
+    <div class="goodQuery" v-if="queryResultState=='good'">
+      <span class="tableTopBanner">
+        <ul>
+        <li><p>Query returned in {{this.queryTime}} seconds</p></li>
+        <li><span class="rightTopBanner"><p>{{this.tableData.rowCount}} rows in result</p>
+          <svg  v-on:click="downloadData()" id="downloadButton" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve">
+          <g>
+          <path d="M426.5,458h-368C51,458,45,464,45,471.5S51,485,58.5,485h368c7.5,0,13.5-6,13.5-13.5S434,458,426.5,458z"/>
+          <path d="M233,378.7c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l107.5-107.5c5.3-5.3,5.3-13.8,0-19.1c-5.3-5.3-13.8-5.3-19.1,0L256,336.5v-323
+            C256,6,250,0,242.5,0S229,6,229,13.5v323l-84.4-84.4c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L233,378.7z"/></g></svg>
+      </span></li></ul></span>
+      <span class="tableWrapper">
       <table class="queryResultArea"> 
-        
         <tr>
-        <th v-for="(header,i) in columnHeaders" :key="i"> {{header}}</th>
+        <th v-for="(header,i) in tableData.header" :key="i"> {{header}}</th>
         </tr>
-
-        <tr v-for="(row,i) in tableData" :key="i">
+        <tr v-for="(row,i) in tableData.data" :key="i">
         <td v-for="(column,j) in row" :key="j"> {{column.value}}</td>
         </tr>
       </table>
+      </span>
       <ul>
-        <button>Next Page</button>
+        <button @click="nextPage()">Next Page</button>
+        <button @click="previousPage()">Previous Page</button>
           <select @change="changeRowsPerPage($event)">
             <option v-for="(n,i) in RowsPerPageOptions" :key="i" :value = "n">{{n}} rows per page</option>
 
           </select>
+        <button class="pageButton" :class="{invisible:pageButtons[i]<0,currentPage:value==tableData.currentPage}"  @click="displayPage(value)" v-for="(value,i) in pageButtons" :key="i">{{pageButtons[i]}}</button>
       </ul>
     </div>
     <div v-else-if="queryResultState=='bad'">
@@ -49,20 +61,34 @@ export default {
   name: 'queryView',
   data(){
     return {
-    queryText:`PREFIX l: <http://federalparliament.be/55/legislation/> 
-PREFIX ns: <http://federalparliament.be/ns#> 
-SELECT ?block 
-WHERE {?block ns:topic l:647.}`,
-    tableData: reactive([]),
+    queryText:`PREFIX legis: <http://federalparliament.be/55/>
+PREFIX ns: <http://federalparliament.be/ns#>
+PREFIX MP: <http://federalparliament.be/MP/>
+SELECT ?asker ?question WHERE { 
+legis:questions ns:item ?question.
+?asker ns:asked ?question.
+?question ns:interviewee 
+<http://federalparliament.be/politicalActors/Sophie%20Wilm%C3%A8s>.
+}`,
+    tableData: reactive(
+      { "header":[],
+        "data":[],
+        rowCount:0,
+        currentPage:0,
+        totalPages:0,
+        rowsPerPage:25,
+      }
+    ),
     columnHeaders: reactive([]),
     runningQuery: reactive(false),
     errorText:  reactive(" "),
     queryResultState: reactive("none"),
-    rowsPerPage: reactive(50),
-    RowsPerPageOptions: [50,100,200,500],
-    pageIndex: 0,
-    amountOfRows:0,
-    amountOfPages:0
+    RowsPerPageOptions: [25,50,100,200,500],
+    queryStart:0,
+    queryTime:0,
+    rawQueryResults : {},
+    pageButtons: reactive([-1,-1,-1,-1,-1]),
+    amountOfPageButtons: 5, // has to be uneven
     }
   },
   components: { orbitSpinner
@@ -71,13 +97,23 @@ WHERE {?block ns:topic l:647.}`,
     document.getElementsByClassName("queryField").readOnly = "false";    
  },
   methods:{
+
+    nextPage(){this.displayPage(this.tableData.currentPage +1);},
+    previousPage(){this.displayPage(this.tableData.currentPage-1);},
+
     changeRowsPerPage(e){
       console.log("nieuwe waarde voor rows per page:",e.target.value);
-      this.rowsPerPage = e.target.value;
-      this.amountOfPages = Math.ceil(this.amountOfRows/this.rowsPerPage);
+      var start = this.tableData.rowsPerPage*this.tableData.currentPage;
+      console.log("stat index for current page",start)
+      this.tableData.rowsPerPage = e.target.value;
+      start = Math.floor(start/this.tableData.rowsPerPage);
+      console.log("new page:",start);
+      this.tableData.totalPages = Math.ceil(this.rawQueryResults["results"]["bindings"].length/this.tableData.rowsPerPage);
+      this.displayPage(start);
 
     },
-    getNrows(data,starti,stopi){
+    getNrows(starti,stopi){
+      var data = this.rawQueryResults["results"]["bindings"];
       if (stopi > data.length){
         stopi = data.length;
       }
@@ -89,25 +125,71 @@ WHERE {?block ns:topic l:647.}`,
     return out;
     },
     
-
-    makeTable(d){
-      console.log("making a table bitches");
-      console.log(d.length);
+    setHeader(){
       var keys = ["#"]
-      keys = keys.concat( Object.keys(d[0]));
-      this.columnHeaders = keys;
-      console.log(this.columnHeaders);
-      this.tableData = this.getNrows(d,0,this.rowsPerPage);
-      console.log(this.tableData);
+      keys = keys.concat( this.rawQueryResults["head"]["vars"]);
+      //Object.keys(this.rawQueryResults["results"]["bindings"][0])
+      this.tableData.header = keys;
+    },
+    displayPage(i){
+      console.log("displaying page:",i)
+      console.log("total pages",this.tableData.totalPages)
+      if (i >=this.tableData.totalPages || i <0){
+        console.log('no valid page index')
+        return;}
+      console.log("fecting data")
+      this.tableData.currentPage = i;
+      this.tableData.data = this.getNrows(i*this.tableData.rowsPerPage,(i+1)*this.tableData.rowsPerPage);
+      console.log("done fecting data")
+      if (this.amountOfPageButtons >= this.tableData.totalPages){
+        console.log("more or equal amount of buttons to pages no need to shift");
+        return;
+        }
+      var buttons = []
+      var halfOfButtons = Math.floor((this.amountOfPageButtons-1)/2);
+      if (i > halfOfButtons &&  this.tableData.totalPages -i > halfOfButtons){
+        for(var j = i-halfOfButtons; j < i + halfOfButtons+1; j++){
+          buttons.push(j)
+        }
 
+      }
+      else if (i <= halfOfButtons) {
+        for(var k = 0; k < this.amountOfPageButtons; k++){
+          buttons.push(k)
+        }
+
+      }
+      else if (this.tableData.totalPages -i <= halfOfButtons){
+        for(var l = this.tableData.totalPages- this.amountOfPageButtons; l < this.tableData.totalPages; l++){
+          buttons.push(l)
+        }
+        
+      }
+      this.pageButtons = buttons;
+      console.log("new buttons", this.pageButtons);
+      
+
+
+    },
+
+    makeTable(){
+      console.log("length of query resuklts",this.rawQueryResults["results"]["bindings"].length);
+      console.log("page count",Math.ceil(this.rawQueryResults["results"]["bindings"].length/this.tableData.rowsPerPage));
+      this.tableData.rowCount = this.rawQueryResults["results"]["bindings"].length;
+      this.tableData.totalPages = Math.ceil(this.rawQueryResults["results"]["bindings"].length/this.tableData.rowsPerPage);
+      this.setHeader();
+      var buttons = []
+      var temp = Math.min(this.amountOfPageButtons,this.tableData.totalPages);
+      for (var i = 0;i<temp;i++){
+        buttons.push(i);
+      }
+      this.pageButtons=buttons;
+      this.displayPage(0);
     },
     query(){
       this.runningQuery = true;
-      console.log(this.queryText);
       var queryUrl = "http://federalparliament.be/sparql" + '?query=' + encodeURIComponent(this.queryText)+'&format=application%2Fsparql-results%2Bjson';
       this.httpGetAsync(queryUrl,this.handleResponse);
-      console.log("done sending request")
-      
     },
     httpGetAsync(theUrl,callback){
     var xmlHttp = new XMLHttpRequest();
@@ -116,14 +198,17 @@ WHERE {?block ns:topic l:647.}`,
             callback(xmlHttp);
     }
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    this.queryStart = new Date();
     xmlHttp.send(null);
 },
 handleResponse(resp){
+  this.queryTime =  (new Date() - this.queryStart)/1000;
   this.runningQuery = false;
   console.log('status from async',resp.status)
+  console.log('response text',resp.responseText)
   if (resp.status == 200){
-    var result = JSON.parse(resp.responseText);
-    this.makeTable(result["results"]["bindings"]);
+    this.rawQueryResults = JSON.parse(resp.responseText);
+    this.makeTable();
     this.queryResultState = "good"
   }
   else if (resp.status == 400){
@@ -134,6 +219,30 @@ handleResponse(resp){
     this.queryResultState = "bad"
   }
 },
+
+isValidPageIndex(i){
+  return ((i >=0) && (i<this.tableData.totalPages));
+},
+
+downloadData(){
+
+  var hiddenElement = document.createElement('a');
+  console.log(this.rawQueryResults["results"]["bindings"]);
+  const dictionaryKeys = Object.keys(this.rawQueryResults["results"]["bindings"][0]);
+
+  const dictValuesAsCsv = this.rawQueryResults["results"]["bindings"].map(dict => (
+    dictionaryKeys.map(key => dict[key].value).join(',')
+  ));
+
+  const result = [dictionaryKeys.join(','), ...dictValuesAsCsv].join('\n');
+
+
+  hiddenElement.href = 'data:attachment/text,' + encodeURI(result);
+  hiddenElement.target = '_blank';
+  hiddenElement.download = 'queryResult.csv';
+  hiddenElement.click();
+},
+
 
 myFunction_set() {
   // Set the value of variable --blue to another value (in this case "lightblue")
@@ -166,12 +275,8 @@ p ,h2, a, h1, ul {
   background-color: var(--backgroundColor);
 
 }
-.queryResultArea{
-  background-color: var(--backgroundColor);
-  min-width: 90%;
-  min-height: 100px;
-  border: 5px;
-}
+
+
 .queryButton{
   height: 100%;
   width: 100%;
@@ -180,6 +285,12 @@ p ,h2, a, h1, ul {
   cursor: pointer;
   fill: var(--iconColor);
 }
+#downloadButton{
+  width: 20px;
+  height: 20px;
+  fill: var(--iconColor);
+  cursor: pointer;
+}
 .queryRunbuttonDiv{
   display: inline-block;
   margin-left: 30px;
@@ -187,8 +298,79 @@ p ,h2, a, h1, ul {
   width: 40px;
   vertical-align: bottom;
 }
-
-table{
-  border: 1px solid;
+.tableWrapper{
+  background-color: firebrick;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+.goodQuery{
+  margin: 0;
+  padding: 0;
+}
+.queryResultArea{
+  background-color: var(--backgroundColor);
+  width: 100%;
+  text-align: left;
+  vertical-align: bottom;
+  border: 1px solid var(--primary);
+  border-collapse: separate;
+  border-left: 0;
+  border-radius: 5px;
+  border-spacing: 0px;
+}
+.tableTopBanner {
+  background-color: burlywood;
+  margin: 0;
+  padding:0;
+  overflow: auto;
+  width: 100%;
+}
+.tableTopBanner ul{
+  margin: 0;
+  padding:0;
+  text-align: bottom;
+}
+.tableTopBanner li{
+    display: inline-block;
+    margin-left: 50px;
+}
+.rightTopBanner{
+  display: inline-block;
+  right: 10px;
+}
+th {
+    border-color: inherit;
+    border-collapse: separate;
+    font-size: large;
+}
+tr {
+    display: table-row;
+    border-color: inherit;
+}
+th, td {
+    padding: 5px 4px 6px 4px; 
+    border-left: 1px solid #ddd;    
+}
+td {
+    border-top: 1px solid #ddd;    
+}
+th:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child {
+    border-radius: 5px 0 0 0;
+}
+th:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+}
+td:nth-child(1) {  
+  border-left-color: var(--primary)
+}
+th:nth-child(1){
+   border-left-color: var(--primary)
+}
+.invisible{
+  display: none;
+}
+.currentPage{
+  background-color:blue;
 }
 </style>

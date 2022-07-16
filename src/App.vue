@@ -11,14 +11,9 @@ import topbar from '@/components/topBar.vue'
 export default {
   name: 'App',
   components: {
-    //HelloWorld,
     topbar,
-    //resumePDF
   },
-
-
   methods:{
-
   }
 }
 </script>
