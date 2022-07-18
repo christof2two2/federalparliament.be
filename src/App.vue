@@ -30,13 +30,19 @@ export default {
   --spinnerColor: black;
   --prussianBlue: #003153;
   --iconColor: black;
+  --inactiveIcon: grey;
   text-align: center;
   color: black;
   background-color: white;
   width: 100%;
-  height: 100vh;
-  padding: 0px;
-  margin: 0px;
+  height: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 #app.dark {
@@ -47,13 +53,10 @@ export default {
   --backgroundColor: #4b4d4c;
   --spinnerColor: white;
   --iconColor: white;
+  --inactiveIcon: grey;
   text-align: center;
   color: white;
   background-color: #4b4d4c;
-  width: 100%;
-  height: 100vh;
-  padding: 0px;
-  margin: 0px;
 }
 
 body{

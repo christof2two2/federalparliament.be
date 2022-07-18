@@ -61,6 +61,7 @@ nav {
 .topBar {
 display:flex;
 align-items: center;
+font-size: large;
 display: flexbox;
 float: top;
 }
