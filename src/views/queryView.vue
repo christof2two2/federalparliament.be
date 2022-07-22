@@ -10,7 +10,7 @@
 
     </div>
     <div class="queryResult">
-      <h1>Output</h1>
+      <h1 id="output">Output</h1>
     <div class="goodQuery" v-if="queryResultState=='good'">
       <div class="tableTopBanner">
         <div><p>Query returned in <b>{{this.queryTime}} seconds</b></p></div>
@@ -19,11 +19,15 @@
           <p><b>{{this.tableData.rowCount}} rows</b> in result</p>
 
           <div  v-on:click="downloadData()" style="cursor:pointer;">
-          <svg  class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          viewBox="0 0 485 485">
-          <g>
-          <path d="M426.5,458h-368C51,458,45,464,45,471.5S51,485,58.5,485h368c7.5,0,13.5-6,13.5-13.5S434,458,426.5,458z"/>
-          <path d="M233,378.7c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l107.5-107.5c5.3-5.3,5.3-13.8,0-19.1c-5.3-5.3-13.8-5.3-19.1,0L256,336.5v-323 C256,6,250,0,242.5,0S229,6,229,13.5v323l-84.4-84.4c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L233,378.7z"/></g></svg>
+          <svg version="1.1" class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve">
+          <g><g id="Download">
+          <path d="M372.939,264.667c-6.641,0-12.03,5.39-12.03,12.03v84.212H24.061v-84.212c0-6.641-5.39-12.03-12.03-12.03
+            S0,270.056,0,276.697v96.242c0,6.641,5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03v-96.242
+            C384.97,270.056,379.58,264.667,372.939,264.667z"/>
+          <path d="M183.703,285.202c4.68,4.632,12.512,4.68,17.191,0l84.2-83.009c4.752-4.704,4.74-12.319,0-17.011
+            c-4.74-4.704-12.439-4.704-17.179,0l-63.46,62.558V12.03c0-6.641-5.438-12.03-12.151-12.03s-12.151,5.39-12.151,12.03v235.71
+            l-63.46-62.558c-4.752-4.704-12.439-4.704-17.179,0c-4.752,4.704-4.752,12.319,0,17.011L183.703,285.202z"/></g></g>
+          </svg>
           <p>Download results</p>
           </div>
      </div>
@@ -101,6 +105,7 @@
     <p>{{errorText}}</p>
     </div>
     </div>
+    <h1> testing</h1>
   </div>
 </template>
 <script>
@@ -187,6 +192,11 @@ legis:questions ns:item ?question.
     displayPage(i){
       console.log("displaying page:",i)
       console.log("total pages",this.tableData.totalPages)
+      if (this.tableData.totalPages == 0){
+        this.tableData.currentPage = i;
+        this.tableData.data = this.getNrows(i*this.tableData.rowsPerPage,(i+1)*this.tableData.rowsPerPage);
+        return;
+      }
       if (i >=this.tableData.totalPages || i <0){
         console.log('no valid page index')
         return;}
@@ -392,13 +402,13 @@ tbody{
 }
 
 
-
+.queryResult{height: 95vh;}
 
 .goodQuery{
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 95vh;
+  height: 100%;
   display: flex;
   flex-flow: column;
   
@@ -482,6 +492,10 @@ div ul path g{
   padding: 0;
   margin: 0;
 
+}
+#output{
+  margin: 0;
+  margin-bottom: 5px;
 }
 .tableBottomBanner{
   margin-top: 10px;

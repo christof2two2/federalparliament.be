@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import docsView from '../views/docsView.vue'
+import queryView from '@/views/queryView.vue'
 
 import docsKG from '../components/docs/kg.vue'
 import docsHome from '../components/docs/home.vue'
-import docsQuery from '../components/docs/query.vue'
-import queryView from '@/views/queryView.vue'
+import docsQuery from '@/components/docs/query.vue'
+import ontologyView from '@/components/docs/ontology.vue'
 const routes = [
   {
     path: '/',
@@ -38,6 +39,12 @@ const routes = [
         path: 'query',
         name: 'docs.query',
         component: docsQuery
+      },
+
+      {
+        path: 'ontology',
+        name: 'docs.ontology',
+        component: ontologyView
       },
     ]
   },

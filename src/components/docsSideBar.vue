@@ -5,6 +5,21 @@
         <ul class= "sideBarMenu">
          <h1>Navigation</h1>
 
+            <li>
+           <div id="docs-query" :class="{'active': subIsActive('docs.ontology')}" >
+           <router-link class="docLink"  :to="{name:'docs.ontology'}">Ontology</router-link>
+              <ul class="submenu">
+              <li>
+                <a href="#people">Link test dink jwz</a>
+              </li>
+              <li>
+                ontology2
+              </li>
+            </ul>
+           </div>
+           </li>
+
+
          <li>
            <div  class="test" ref="docs-kg" :class="{'active': subIsActive('docs.kg')}">
            <router-link class="docLink" :to="{name:'docs.kg'}">What is a Knowledge Graph </router-link> 
@@ -17,8 +32,12 @@
               </li>
             </ul>
            </div>
-         
          </li>
+
+
+
+
+
          <li>
            <div id="docs-query" :class="{'active': subIsActive('docs.query')}" >
            <router-link class="docLink"  :to="{name:'docs.query'}">How to query </router-link>
@@ -30,14 +49,9 @@
                 test4
               </li>
             </ul>
-
-
-
            </div>
            </li>
-         <li><router-link class="docLink" :to="{name:'about'}">Package </router-link></li>
 
-         
         </ul>
        
     </div>
