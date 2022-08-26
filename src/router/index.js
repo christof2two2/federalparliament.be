@@ -7,6 +7,7 @@ import docsKG from '../components/docs/kg.vue'
 import docsHome from '../components/docs/home.vue'
 import docsQuery from '@/components/docs/query.vue'
 import ontologyView from '@/components/docs/ontology.vue'
+import downloadsView from '@/views/downloadsView.vue'
 const routes = [
   {
     path: '/',
@@ -17,6 +18,11 @@ const routes = [
     path: '/query',
     name: 'query',
     component: queryView
+  },
+  {
+    path: '/downloads',
+    name: 'downloads',
+    component: downloadsView
   },
   {
     path: '/docs',

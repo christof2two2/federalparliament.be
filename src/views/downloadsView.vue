@@ -21,6 +21,12 @@
     </ul>
   </div>
 </template>
+<script>
+export default {
+  name: 'downloadsView',
+  components: {},
+}
+</script>
 
 <style scoped>
 
@@ -31,6 +37,5 @@
 p ,h2, a, h1, ul {
   text-align: left;
 }
-p{line-height: 150%;}
 
 </style>

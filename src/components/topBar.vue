@@ -2,13 +2,14 @@
     <div class="topBar">
        
          <div class="logo">
-          <router-link  class = "Home" to="/"><img src="../assets/icon.png"></router-link>
+          <router-link  class = "HomeRouter" to="/"><p class=home><fblack>federal</fblack><fyellow>parliament</fyellow><fred>.be</fred></p></router-link>
           </div>
         <ul class= "menu">
           <li class="links">
         <nav>
          <router-link class="rlink" to="/query">Query </router-link>
          <router-link class="rlink"  to="/docs">Documentation </router-link>
+         <router-link class="rlink"  to="/downloads">Downloads </router-link>
          <router-link class="rlink" to="/about">About </router-link>
          </nav> 
          </li>
@@ -43,7 +44,33 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  font-size: x-large;
+  margin: 0;
 
+}
+.logo a{
+  text-decoration: none;
+}
+.home fblack {
+  color: black
+}
+.home fyellow{
+  color:#B58B00 ;
+}
+.home fred{
+  color:#EF3340 ;
+}
+.homeRouter{
+  padding: 0;
+  margin: 0;
+}
+.HomeRouter.router-link-active{
+  text-decoration-line: none;
+
+ }
+ HomeRouter.rlink{
+text-decoration-line: none;}
 img {
   height: 30px;
   width: 30px;
@@ -64,6 +91,7 @@ align-items: center;
 font-size: large;
 display: flexbox;
 float: top;
+margin-top: 5px;
 }
 .darkmodeToggleButton{
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(105%);
@@ -89,7 +117,9 @@ margin-left: 20px;
  }
 
  .logo{
-   float:left
+   float:left;
+   margin-left: 10px;
+   padding: 0;
  }
 
 .darkModeButton{

@@ -4,23 +4,7 @@
       
         <ul class= "sideBarMenu">
          <h1>Navigation</h1>
-
-            <li>
-           <div id="docs-query" :class="{'active': subIsActive('docs.ontology')}" >
-           <router-link class="docLink"  :to="{name:'docs.ontology'}">Ontology</router-link>
-              <ul class="submenu">
-              <li>
-                <a href="#people">Link test dink jwz</a>
-              </li>
-              <li>
-                ontology2
-              </li>
-            </ul>
-           </div>
-           </li>
-
-
-         <li>
+                         <li>
            <div  class="test" ref="docs-kg" :class="{'active': subIsActive('docs.kg')}">
            <router-link class="docLink" :to="{name:'docs.kg'}">What is a Knowledge Graph </router-link> 
             <ul class="submenu">
@@ -33,24 +17,37 @@
             </ul>
            </div>
          </li>
-
-
-
-
-
-         <li>
-           <div id="docs-query" :class="{'active': subIsActive('docs.query')}" >
-           <router-link class="docLink"  :to="{name:'docs.query'}">How to query </router-link>
+            <li>
+           <div id="docs-query" :class="{'active': subIsActive('docs.ontology')}" >
+           <router-link class="docLink"  :to="{name:'docs.ontology'}">Ontology</router-link>
               <ul class="submenu">
               <li>
-                test3
+                <a href="#base">Base</a>
               </li>
               <li>
-                test4
+                <a href="#meetings">Meetings</a>
+              </li>
+                <li>
+                <a href="#topics">Topics</a>
               </li>
             </ul>
            </div>
            </li>
+
+         <li>
+           <div id="docs-query" :class="{'active': subIsActive('docs.query')}" >
+           <router-link class="docLink"  :to="{name:'docs.query'}">Querying </router-link>
+              <ul class="submenu">
+              <li>
+                <a href="#howto">How to query</a>
+              </li>
+              <li>
+                <a href="#examples">Example queries</a>
+              </li>
+            </ul>
+           </div>
+           </li>
+
 
         </ul>
        
@@ -107,5 +104,13 @@ color: steelblue;
 .active > .submenu{
   display: block;
   list-style: square;
+}
+div a{
+  text-decoration: none;
+  color: inherit;
+  
+}
+a:hover{
+  text-decoration: underline;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div class="content">
     <h1>Query</h1>
+    <p class="infoText">See the <router-link class="rlink" to="/docs/query">query page </router-link>for more information on how to query the dataset and example queries.</p>
     <div class="queryDiv">
     <textarea v-model="queryText" class="queryField" type="text" spellcheck="false"> </textarea>
     <div class='queryRunbuttonDiv'>   
       <svg v-if="runningQuery==false" v-on:click="query()" class="queryButton" width="512px" height="512px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title>run-query</title><path d="M133,440a35.37,35.37,0,0,1-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37,7.46-27.53,19.46-34.33a35.13,35.13,0,0,1,35.77.45L399.12,225.48a36,36,0,0,1,0,61L151.23,434.88A35.5,35.5,0,0,1,133,440Z"/></svg> 
       <orbitSpinner v-if="runningQuery==true"> </orbitSpinner>
     </div>
-
+    <p>Query results are limited to 5000 rows. To run queries with more results please download the data files from the <router-link class="rlink" to="/downloads">downloads page</router-link> and run your own sparql queries on them.</p>
     </div>
     <div class="queryResult">
       <h1 id="output">Output</h1>
@@ -35,17 +36,19 @@
       
       
       </div>
-
       <div class="tableWrapper">
       <table class="queryResultArea"> 
+        <thead>
         <tr>
         <th v-for="(header,i) in tableData.header" :key="i"> {{header}}</th>
         </tr>
+        </thead>
         <tbody>
         <tr v-for="(row,i) in tableData.data" :key="i">
         <td v-for="(column,j) in row" :key="j"> {{column.value}}</td>
         </tr>
         </tbody>
+  
       </table>
       </div>
       <div class="tableBottomBanner">
@@ -102,10 +105,11 @@
       </div>
     </div>
     <div v-else-if="queryResultState=='bad'">
-    <p>{{errorText}}</p>
+      <h3>Error</h3>
+    <p><b>Error message:</b> {{errorText}}</p>
     </div>
     </div>
-    <h1> testing</h1>
+    
   </div>
 </template>
 <script>
@@ -131,14 +135,14 @@ legis:questions ns:item ?question.
         rowCount:0,
         currentPage:0,
         totalPages:0,
-        rowsPerPage:25,
+        rowsPerPage:50,
       }
     ),
     columnHeaders: reactive([]),
     runningQuery: reactive(false),
     errorText:  reactive(" "),
     queryResultState: reactive("none"),
-    RowsPerPageOptions: [25,50,100,200,500],
+    RowsPerPageOptions: [50,100,200,500],
     queryStart:0,
     queryTime:0,
     rawQueryResults : {},
@@ -281,6 +285,11 @@ handleResponse(resp){
     this.errorText = temp;
     this.queryResultState = "bad"
   }
+    else if (resp.status == 0){
+    console.log('response if timeout request request',resp.responseText);
+    this.errorText = "Request timed out. Server might be down";
+    this.queryResultState = "bad"
+  }
 },
 
 isValidPageIndex(i){
@@ -369,49 +378,41 @@ p ,h2, a, h1, ul {
   width: 40px;
   vertical-align: bottom;
 }
-
-tbody{
-  height: 50px; 
-  overflow: auto;
-    
-  /* Hide the horizontal scroll */
-  overflow-x: hidden; 
+.infoText{
+  margin-bottom: 10px;
 }
-
 .tableWrapper{
   margin: 0;
   padding: 0;
   width: 100%;
-  flex-grow: 1;
   overflow: auto;
+  border-color: var(--primary);
+  border-width: 1px;
+  border-radius: 7px;
+  border-style: solid;
+  border-collapse: collapse;  
+  height:70vh;
 }
-
+h3{text-align: left;}
 .queryResultArea{
   background-color: var(--backgroundColor);
   width: 100%;
-  overflow: auto;
   margin: 0;
   padding: 0;
   text-align: left;
   vertical-align: bottom;
-  border: 1px solid var(--primary);
-  border-collapse: separate;
-  border-left: 0;
-  border-radius: 5px;
-  border-spacing: 0px;
 }
 
 
-.queryResult{height: 95vh;}
+
 
 .goodQuery{
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  
+
+}
+.queryResult{
+  height: 90vh;
 }
 
 .tableTopBanner {
@@ -422,7 +423,11 @@ tbody{
   justify-content: space-between;
   margin-bottom: 5px;
 }
-
+.tableBottomBanner{
+  margin: 0;
+  padding:0;
+  width: 100%;
+}
 p {
   padding: 0;
   margin: 0;
@@ -453,35 +458,42 @@ p {
 
 
 
-th {
-    border-color: inherit;
-    border-collapse: separate;
-    font-size: large;
 
+table  { margin-top:  20px; display: table; overflow: auto;}
+thead {border-collapse: collapse;}
+
+thead tr th{ 
+  /*border: 1px solid green;*/
+  border-top: 0;
+  position: sticky;
+  top: 0;
+  background-color: var(--backgroundColor);
+  box-shadow: inset 0 -1px 0 #ddd, inset -1px 0 0 #ddd;
+  }
+ thead tr th:last-child  {
+  box-shadow: inset 0 -1px 0 #ddd;}
+thead,tbody{
+  width: 100%;
 }
-tr {
-    display: table-row;
-    border-color: inherit;
+
+table{border-collapse: collapse;}
+table tbody{border-collapse: collapse;}
+table td {
+  border: 1px solid #ddd; 
 }
-th, td {
-    padding: 5px 4px 6px 4px; 
-    border-left: 1px solid #ddd;    
+table tr:first-child td {
+  border-top: 0;
 }
-td {
-    border-top: 1px solid #ddd;    
+table tr td:first-child {
+  border-left: 0;
 }
-th:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child {
-    border-radius: 5px 0 0 0;
+/*table tr:last-child td {
+  border-bottom: 0;
+}*/
+table tr td:last-child {
+  border-right: 0;
 }
-th:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child {
-    border-radius: 0 0 0 5px;
-}
-td:nth-child(1) {  
-  border-left-color: var(--primary)
-}
-th:nth-child(1){
-   border-left-color: var(--primary)
-}
+
 .invisible{
   display: none;
 }
@@ -512,4 +524,10 @@ div ul path g{
 .tableBottomBanner svg {
   margin-left: 5px;
 }
+.rlink{
+  text-decoration: underline;
+  color: inherit
+}
+p{line-height: 150%;}
+
 </style>

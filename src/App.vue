@@ -14,13 +14,15 @@ export default {
     topbar,
   },
   methods:{
+  },
+    metaInfo: {
+    title: 'About Us'
   }
 }
 </script>
 
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -63,5 +65,6 @@ body{
   margin: 0;
   padding: 0;
 }
+
 
 </style>

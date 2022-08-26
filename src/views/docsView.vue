@@ -23,17 +23,17 @@ export default {
   top: 0;
   margin-right: 10px;
   vertical-align: top;
-  width:20%
+  width:15%
  
 }
 .content{
   top: 0;
-  width:50%;
+  width:60%;
 
   display: inline-block;
 }
 
 .docs{
-  background-color: lavender;
+
 }
 </style>
