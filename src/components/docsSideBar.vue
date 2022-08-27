@@ -4,19 +4,6 @@
       
         <ul class= "sideBarMenu">
          <h1>Navigation</h1>
-                         <li>
-           <div  class="test" ref="docs-kg" :class="{'active': subIsActive('docs.kg')}">
-           <router-link class="docLink" :to="{name:'docs.kg'}">What is a Knowledge Graph </router-link> 
-            <ul class="submenu">
-              <li>
-                test
-              </li>
-              <li>
-                test2
-              </li>
-            </ul>
-           </div>
-         </li>
             <li>
            <div id="docs-query" :class="{'active': subIsActive('docs.ontology')}" >
            <router-link class="docLink"  :to="{name:'docs.ontology'}">Ontology</router-link>

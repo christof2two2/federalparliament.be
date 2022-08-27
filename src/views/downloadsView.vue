@@ -8,7 +8,7 @@
     <p>You can contact me in the following ways.</p>
     <ul class="contactWays">
        <li>Personal Website: 
-       <a href="https://cchalmet.be"> cchalmet.be </a>
+       <a download="resume.pdf" href="resume.pdf"> cchalmet.be </a>
       </li>
 
       <li>Email: 
@@ -22,9 +22,22 @@
   </div>
 </template>
 <script>
+
 export default {
   name: 'downloadsView',
   components: {},
+  methods: {
+    async downloadItem(type) {
+    console.log(type);
+    var hiddenElement = document.createElement('a');
+
+    var result = " 12";
+    hiddenElement.href = 'data:attachment/text,' + encodeURI(result);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'queryResult.pdf';
+    hiddenElement.click();
+    },
+  },
 }
 </script>
 
