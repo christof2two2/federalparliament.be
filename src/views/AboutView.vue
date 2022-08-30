@@ -4,15 +4,18 @@
     <p>Hello, i am Christophe and this project started as my master thesis.
     </p>
     
-    <h1>Contact</h1>
+    <h1 id="contact">Contact</h1>
     <p>You can contact me in the following ways.</p>
     <ul class="contactWays">
 
       <li>Email: 
-       <a  href="mailto:christophe.chalmet@outlook.be"> Christophe.Chalmet@outlook.be </a>
+       <a  href="mailto:christophe.chalmet@outlook.be"> christophe.chalmet@outlook.be </a>
       </li>
       <li>Github: 
        <a href="https://github.com/christof2Two2"> christof2Two2</a>
+      </li>
+      <li>LinkedIn: 
+       <a href="https://www.linkedin.com/in/christophe-chalmet/"> christophe-chalmet</a>
       </li>
 
     </ul>

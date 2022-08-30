@@ -68,10 +68,12 @@ export default {
   left: 0;
   position: relative;
   float: left;
+  padding: 0;
 }
 .sideBarMenu{
   list-style: none;
   text-align: left;
+  margin: 0;
 }
 .sideBarMenu li {
   margin-top: 30px;
@@ -100,4 +102,5 @@ div a{
 a:hover{
   text-decoration: underline;
 }
+h1{margin-top: 0;}
 </style>

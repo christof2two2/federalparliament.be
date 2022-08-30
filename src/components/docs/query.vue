@@ -2,10 +2,10 @@
 <h1>Querying</h1>
 <h2 id=howto>How to query</h2>
 <p>The dataset can be querried using the SPARQL langauge.</p>
-<p>If you are not familair with SPARQL this tutorial might prove usefull <a class="rlink" href=https://docs.stardog.com/tutorials/learn-sparql>docs.stardog.com/tutorials/learn-sparql</a> </p>
+<p>If you are not familair with SPARQL this tutorial might prove usefull <a class="rlink" href=https://docs.stardog.com/tutorials/learn-sparql>docs.stardog.com/tutorials/learn-sparql</a>.</p>
 <p>There are several ways you can query this dataset.</p>
 <ul>
-  <li><p>Use the query <router-link class="rlink" to="/query">query </router-link> tab.</p></li>
+  <li><p>Use the <router-link class="rlink" to="/query">query </router-link> tab.</p></li>
   <li><p>Accesing the endpoint at <a class="rlink" href="http://federalparliament.be/sparql">federalparliament.be/sparql</a> via code by wrapping the endpoint. A wrapper for python can be found here <a class="rlink" href=https://github.com/RDFLib/sparqlwrapper>github.com/RDFLib/sparqlwrapper </a>.</p></li>
   <li><p>If you want to perform a large amount of queries, download the data files and host your own endpoint.</p></li>
 </ul>

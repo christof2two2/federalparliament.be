@@ -8,8 +8,8 @@
       <svg v-if="runningQuery==false" v-on:click="query()" class="queryButton" width="512px" height="512px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title>run-query</title><path d="M133,440a35.37,35.37,0,0,1-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37,7.46-27.53,19.46-34.33a35.13,35.13,0,0,1,35.77.45L399.12,225.48a36,36,0,0,1,0,61L151.23,434.88A35.5,35.5,0,0,1,133,440Z"/></svg> 
       <orbitSpinner v-if="runningQuery==true"> </orbitSpinner>
     </div>
-    <p>Query results are limited to 5000 rows. To run queries with more results please download the data files from the <router-link class="rlink" to="/downloads">downloads page</router-link> and run your SPARQL queries localy.</p>
     </div>
+    <p>Query results are limited to 5000 rows. To run queries with more results please download the data files from the <router-link class="rlink" to="/downloads">downloads page</router-link> and run your SPARQL queries localy.</p>
     <div class="queryResult">
       <h1 id="output">Output</h1>
     <div class="goodQuery" v-if="queryResultState=='good'">
@@ -105,8 +105,9 @@
       </div>
     </div>
     <div v-else-if="queryResultState=='bad'">
-      <h3>Error</h3>
+      <div class="errorMessage">
     <p><b>Error message:</b> {{errorText}}</p>
+    </div>
     </div>
     </div>
     
@@ -324,9 +325,16 @@ downloadData(){
   margin-left: 15%;
   width: 70%;
   background-color: var(--backgroundColor);
+  border-radius: 20px;
 }
 p ,h2, a, h1, ul {
   text-align: left;
+}
+.queryDiv{
+  background-color: var(--popOutSection);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 .queryField{
   width: 90%;
@@ -336,7 +344,7 @@ p ,h2, a, h1, ul {
   margin-bottom: 30px;
   text-align: left;
   color: var(--primary);
-  background-color: var(--backgroundColor);
+  background-color:  var(--popOutSection);
   font-size: larger
 
 }
@@ -395,7 +403,7 @@ p ,h2, a, h1, ul {
 }
 h3{text-align: left;}
 .queryResultArea{
-  background-color: var(--backgroundColor);
+  background-color: var(--popOutSection);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -413,6 +421,10 @@ h3{text-align: left;}
 }
 .queryResult{
   height: 90vh;
+  background-color: var(--popOutSection);
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 5px;
 }
 
 .tableTopBanner {
@@ -467,7 +479,7 @@ thead tr th{
   border-top: 0;
   position: sticky;
   top: 0;
-  background-color: var(--backgroundColor);
+  background-color: var(--popOutSection);
   box-shadow: inset 0 -1px 0 #ddd, inset -1px 0 0 #ddd;
   }
  thead tr th:last-child  {
@@ -487,9 +499,7 @@ table tr:first-child td {
 table tr td:first-child {
   border-left: 0;
 }
-/*table tr:last-child td {
-  border-bottom: 0;
-}*/
+
 table tr td:last-child {
   border-right: 0;
 }
@@ -529,5 +539,10 @@ div ul path g{
   color: inherit
 }
 p{line-height: 150%;}
-
+.errorMessage {
+  background-color: var(--errorBackground);
+  border-radius: 10px;
+  padding: 5px;
+  width: fit-content;
+}
 </style>

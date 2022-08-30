@@ -53,7 +53,7 @@ export default {
   text-decoration: none;
 }
 .home fblack {
-  color: black
+  color: var(--textColor);
 }
 .home fyellow{
   color:#B58B00 ;
@@ -92,6 +92,7 @@ font-size: large;
 display: flexbox;
 float: top;
 margin-top: 5px;
+margin-bottom: 10px;
 }
 .darkmodeToggleButton{
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(105%);

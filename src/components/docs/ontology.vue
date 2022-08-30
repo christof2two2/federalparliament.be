@@ -23,7 +23,7 @@
     </p>
     <h2>Ontology</h2>
        <h3 id="base">Base</h3>
-        <img src="@/assets/base.svg" alt="">
+       <div class="imgWrapper"><img src="@/assets/base.svg" alt=""></div>
       <p>We will build our KG from the base URI <b>http://federalparliament.be/kg</b>.
       For every legislature there is a predicate called <b>legislature</b> that starts from our base and points to the URI for that legislature.
       For every organization type we 
@@ -31,10 +31,10 @@
     <p>Current block types are questions,legislation,budgets,interpellations, and govDecleration</p>
       <p>Current block types are questions,legislation,budgets,interpellations, and govDecleration</p>
     <h3 id="meetings">Meetings</h3>
-    <img src="@/assets/speeches.svg" alt="">
+     <div class="imgWrapper"><img src="@/assets/speeches.svg" alt=""></div>
      <p>To allow translations to be added both originalContent and content is provided.</p>
     <h3 id="topics">Topics</h3>
-    <img src="@/assets/topics.svg" alt="">
+    <div class="imgWrapper"><img src="@/assets/topics.svg" alt=""></div>
     <p></p>
       
 </template>
@@ -60,16 +60,21 @@ p,h3,h1,h2{
 }
 h1, h2, h3 {
   margin-bottom: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
-.pageTitle{margin-top: 0.67em;margin-bottom: 0.67em;}
-div{ height: 1000px;}
-img{width: 90%;
-margin-top: 20px;}
+.pageTitle{margin-top: 0;
+margin-bottom: 0.67em;}
+img{width: calc(100% - 10px);
+padding: 5px;}
 .rlink{
   text-decoration: underline;
   color: inherit
 }
-p{line-height: 150%;}
+p{line-height: 150%;
+font-size: 106%;}
+.imgWrapper{background: var(--popOutElement);
+border-radius: 30px;
+margin-top: 20px;
+}
 </style>
 
