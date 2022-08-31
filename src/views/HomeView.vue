@@ -15,7 +15,7 @@
     Want to find an answer to a question, looking for a debate about a specific bill, or you want to get everyhting that was said in parliament by a member of parliament
     it can all be done in a single query.
     </p></div>
-  <div class="item-9"><p>Dataset and scraping tool are both open source.</p></div>
+  <div class="item-9"><p>Dataset and scraping tool are open source.</p></div>
 </section>
 </div>
   </div>

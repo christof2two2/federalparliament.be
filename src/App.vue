@@ -17,7 +17,7 @@ export default {
     bottomBar,
   },
   created () {
-      document.title = "BelFedParl"
+      document.title = "Belgian Parliament in KG form"
   },
   methods:{
   },
@@ -30,7 +30,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --textColor: Black;
@@ -44,6 +44,7 @@ export default {
   --popOutSection: #F1F1F1;
   --popOutElement: #F1F1F1;
   --errorBackground:#F36870;
+  --highlight: #41729F;
   text-align: center;
   color: black;
   background-color: white;
@@ -72,6 +73,7 @@ export default {
   --popOutSection: #212121;
   --popOutElement: #353535;
   --errorBackground:#C73E1D;
+  --highlight: #41729F;
   text-align: center;
   color: white;
   background-color: var(--backgroundColor);

@@ -2,7 +2,7 @@
     <div class="topBar">
        
          <div class="logo">
-          <router-link  class = "HomeRouter" to="/"><p class=home><fblack>federal</fblack><fyellow>parliament</fyellow><fred>.be</fred></p></router-link>
+          <router-link  class = "HomeRouter" to="/"><p class=home><b class="black">federal</b><b class="yellow">parliament</b><b class="red">.be</b></p></router-link>
           </div>
         <ul class= "menu">
           <li class="links">
@@ -52,13 +52,13 @@ export default {
 .logo a{
   text-decoration: none;
 }
-.home fblack {
+.black {
   color: var(--textColor);
 }
-.home fyellow{
+.yellow{
   color:#B58B00 ;
 }
-.home fred{
+.red{
   color:#EF3340 ;
 }
 .homeRouter{

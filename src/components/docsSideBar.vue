@@ -85,7 +85,8 @@ export default {
   text-decoration: none;
 }
 .router-link-active{
-color: steelblue;
+color: var(--highlight);
+text-decoration: underline;
 }
 .submenu{
   display: none;

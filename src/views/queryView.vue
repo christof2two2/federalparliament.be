@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <h1>Query</h1>
-    <p class="infoText">See the <router-link class="rlink" to="/docs/query">query page </router-link>for more information on how to query the dataset and example queries.</p>
+    <p class="infoText">See <router-link class="rlink" to="/docs/query">documentation</router-link> for more information on how to query the dataset and example queries.</p>
     <div class="queryDiv">
     <textarea v-model="queryText" class="queryField" type="text" spellcheck="false"> </textarea>
     <div class='queryRunbuttonDiv'>   
@@ -9,7 +9,7 @@
       <orbitSpinner v-if="runningQuery==true"> </orbitSpinner>
     </div>
     </div>
-    <p>Query results are limited to 5000 rows. To run queries with more results please download the data files from the <router-link class="rlink" to="/downloads">downloads page</router-link> and run your SPARQL queries localy.</p>
+    <p>Query results are limited to 5000 rows. To run queries with more results please download the data files from the <router-link class="rlink" to="/downloads">downloads page</router-link> and run your SPARQL queries locally.</p>
     <div class="queryResult">
       <h1 id="output">Output</h1>
     <div class="goodQuery" v-if="queryResultState=='good'">
@@ -124,6 +124,7 @@ export default {
     queryText:`PREFIX legis: <http://federalparliament.be/55/>
 PREFIX ns: <http://federalparliament.be/ns#>
 PREFIX MP: <http://federalparliament.be/MP/>
+
 SELECT ?asker ?question WHERE { 
 legis:questions ns:item ?question.
 ?asker ns:asked ?question.
