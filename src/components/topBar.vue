@@ -7,10 +7,10 @@
         <ul class= "menu">
           <li class="links">
         <nav>
-         <router-link class="rlink" to="/query">Query </router-link>
-         <router-link class="rlink"  to="/docs">Documentation </router-link>
-         <router-link class="rlink"  to="/downloads">Downloads </router-link>
-         <router-link class="rlink" to="/about">About </router-link>
+         <router-link class="rlink" to="/query"><b>Query</b></router-link>
+         <router-link class="rlink"  to="/docs"><b>Documentation</b> </router-link>
+         <router-link class="rlink"  to="/downloads"><b>Downloads</b></router-link>
+         <router-link class="rlink" to="/about"><b>About</b></router-link>
          </nav> 
          </li>
          <li class="darkModeButton">
