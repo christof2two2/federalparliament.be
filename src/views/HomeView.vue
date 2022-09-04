@@ -10,9 +10,9 @@
   <div class="item-4"><h2>Original data</h2></div>
   <div class="item-5"><h2>Easily search through debates</h2></div>
   <div class="item-6"><h2>Open source</h2></div>
-  <div class="item-7"><p>Dataset was made by scraping offical meeting transcripts from the parliament's website.</p></div>
+  <div class="item-7"><p>Dataset was made by scraping official meeting transcripts from the parliament's website.</p></div>
   <div class="item-8"><p>
-    Want to find an answer to a question, looking for a debate about a specific bill, or you want to get everyhting that was said in parliament by a member of parliament
+    Want to find an answer to a question, looking for a debate about a specific bill, or you want to get everyhting that was said by a member of parliament
     it can all be done in a single query.
     </p></div>
   <div class="item-9"><p>Dataset and scraping tool are open source.</p></div>

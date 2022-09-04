@@ -128,8 +128,7 @@ PREFIX MP: <http://federalparliament.be/MP/>
 SELECT ?asker ?question WHERE { 
 legis:questions ns:item ?question.
 ?asker ns:asked ?question.
-?question ns:interviewee 
-<http://federalparliament.be/politicalActors/Sophie%20Wilm%C3%A8s>.
+?question ns:interviewee <http://federalparliament.be/politicalActors/Sophie%20Wilm%C3%A8s>.
 }`,
     tableData: reactive(
       { "header":[],
@@ -338,7 +337,7 @@ p ,h2, a, h1, ul {
   padding: 10px;
 }
 .queryField{
-  width: 90%;
+  width: 93%;
   min-height: 200px;
   resize: vertical;
   vertical-align: bottom;
@@ -509,7 +508,7 @@ table tr td:last-child {
   display: none;
 }
 .currentPage{
-  background-color:lightcyan;
+  background-color:var(--highlight);
 }
 div ul path g{
   padding: 0;

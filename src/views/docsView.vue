@@ -21,7 +21,7 @@ export default {
 .sidebar{
   display: inline-block;
   top: 0;
-  margin-right: 10px;
+  margin-right: 1%;
   vertical-align: top;
   width:15%;
   background-color: var(--popOutSection);
@@ -39,5 +39,6 @@ export default {
   background-color: var(--popOutSection);
   border-radius: 20px;
 }
+
 
 </style>
