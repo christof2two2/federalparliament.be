@@ -17,7 +17,7 @@ export default {
     bottomBar,
   },
   created () {
-      document.title = "Belgian Parliament in KG form"
+      document.title = "Belgian Parliament As A Knowledge Graph"
   },
   methods:{
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <h1>About this project</h1>
-    <p>Hello, i am Christophe and this project started as my master thesis.
+    <p>Hello, i am Christophe and this project started as my master thesis. On this website I publish (parts of)the dataset created during my thesis and expand upon it.
     </p>
     
     <h1 id="contact">Contact</h1>

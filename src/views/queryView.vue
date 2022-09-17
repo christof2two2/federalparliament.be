@@ -373,6 +373,9 @@ p ,h2, a, h1, ul {
   height: 25px;
   margin: 0;
   padding: 0;
+  background: var(--popOutElement);
+  color: var(--textColor);
+  border-color: blue;
 }
 .inactiveButton{
   fill: var(--inactiveIcon);
@@ -381,7 +384,7 @@ p ,h2, a, h1, ul {
 
 .queryRunbuttonDiv{
   display: inline-block;
-  margin-left: 30px;
+  margin-left: 0.3%;
   height: 40px;
   width: 40px;
   vertical-align: bottom;
