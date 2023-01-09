@@ -15,12 +15,6 @@ export default {
     },
   methods:{
 
-    toggleDarkMode(){
-      this.darkMode = !this.darkMode
-      if (this.darkMode){document.getElementById("app").classList.add("dark")}
-      else{document.getElementById("app").classList.remove("dark")}
-      this.$forceUpdate();
-    }
     },
 
   
