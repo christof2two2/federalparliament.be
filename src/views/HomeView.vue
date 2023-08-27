@@ -18,9 +18,17 @@
   <div class="item-9"><p>Dataset and scraping tool are open source.</p></div>
 </section>
 </div>
+<hr class="divider">
+<div class="factSection">
+  <div><img  class="factImg" src="@/assets/stats.svg" alt=""></div>
+  <div class="grid-item"><p class="factText"><b>3 Milion words in dataset.</b></p></div>
+  <div class="grid-item"><p class="factText"><b>20 years of debates.</b></p></div>
+  <div><img class ="factImg" src="@/assets/time.svg" alt=""></div>
+  <div><img class ="factImg" src="@/assets/debat.svg" alt=""></div>
+  <div class="grid-item"><p class="factText"></p></div>
+</div> 
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 
@@ -55,6 +63,16 @@ margin-right: 10vw;
     "c c c";
   
 }
+.factImg{
+height: 150px;
+width: 150px;
+}
+.factText{
+  margin: 0;
+  padding: 0;
+  display: inline;
+  vertical-align: middle;
+}
 .features{display: inline-block;
 bottom: 0;
 width: 25%;}
@@ -81,16 +99,35 @@ width: 25%;}
   bottom: 0;
   left: 0;
   align-self: end;
-  
-  
-
   }
 
 img{  position: relative;
   bottom: 0;
   left: 0;
   align-self: end;
+  margin: 0;
+  padding: 0;
   }
 p {line-height: 140%;
 font-size: large;}
+.factSection{
+  display: inline-grid;
+  grid-template-areas:
+    "a a";
+gap: 10px;
+}
+.divider{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  color: var(--secondaryTextColor);
+  border: 1px solid;
+  border-radius: 7px;
+}
+.grid-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

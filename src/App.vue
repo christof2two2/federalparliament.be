@@ -74,6 +74,7 @@ export default {
   --popOutElement: #353535;
   --errorBackground:#C73E1D;
   --highlight: #41729F;
+  --pageButtonHighlight: #5885af;
   text-align: center;
   color: white;
   background-color: var(--backgroundColor);

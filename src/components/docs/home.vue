@@ -1,21 +1,18 @@
 <template>
   <div>
     <h1>Documentation</h1>
-    <h3>Ontology</h3>
-    <h3>Querying</h3>
+
       <p>Information on how to query the dataset and some example queries.</p>
+      <p>Parliamentry debates are modeled as a Knowledge Graph (KG). A knowledge graph is a graphical representation of entities and their relationships, typically used to represent complex data in a structured and organized manner. The entities in a knowledge graph are linked together by relationships, which describe the connections between entities. This allows for easy navigation and understanding of the relationships between various concepts and entities.</p>
   </div>
 </template>
-
 <script>
 export default {
   name: 'docsHome',
   props: {
-    msg: String
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
  b{

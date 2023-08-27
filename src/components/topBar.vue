@@ -2,7 +2,7 @@
     <div class="topBar">
        
          <div class="logo">
-          <router-link  class = "HomeRouter" to="/"><p class=home>🇺🇦 <b class="black">federal</b><b class="yellow">parliament</b><b class="red">.be</b></p></router-link>
+          <router-link  class = "HomeRouter" to="/"><p class=home><b class="black">federal</b><b class="yellow">parliament</b><b class="red">.be</b></p></router-link>
           </div>
         <ul class= "menu">
           <li class="links">

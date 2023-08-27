@@ -15,7 +15,6 @@
     <div class="goodQuery" v-if="queryResultState=='good'">
       <div class="tableTopBanner">
         <div><p>Query returned in <b>{{this.queryTime}} seconds</b></p></div>
-
         <div class="rightTopBanner">
           <p><b>{{this.tableData.rowCount}} rows</b> in result</p>
 
@@ -32,9 +31,6 @@
           <p>Download results</p>
           </div>
      </div>
-      
-      
-      
       </div>
       <div class="tableWrapper">
       <table class="queryResultArea"> 
@@ -48,14 +44,12 @@
         <td v-for="(column,j) in row" :key="j"> {{column.value}}</td>
         </tr>
         </tbody>
-  
+
       </table>
       </div>
       <div class="tableBottomBanner">
-
                   <select @change="changeRowsPerPage($event)">
             <option v-for="(n,i) in RowsPerPageOptions" :key="i" :value = "n">{{n}} rows per page</option>
-
           </select>
         <div>
         <button class="pageButton" :class="{invisible:pageButtons[i]<0,currentPage:value==tableData.currentPage}"  @click="displayPage(value)" v-for="(value,i) in pageButtons" :key="i">{{pageButtons[i]}}</button>
@@ -70,9 +64,6 @@
       <path d="M104.315,87.755l-82.997-84.2c-4.704-4.74-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l74.528,75.61
       l-74.54,75.61c-4.704,4.74-4.704,12.439,0,17.179s12.319,4.74,17.011,0l82.997-84.2C108.838,100.375,108.85,92.327,104.315,87.755z"/></g></g>
       </svg>
-
-
-
 
       <svg version="1.1" class="icon rotate" :class="{inactiveButton: tableData.currentPage==0}" xmlns="http://www.w3.org/2000/svg" @click="displayPage(tableData.currentPage -1)" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 240.823 240.823">
@@ -375,7 +366,7 @@ p ,h2, a, h1, ul {
   padding: 0;
   background: var(--popOutElement);
   color: var(--textColor);
-  border-color: blue;
+  border-color: var(--textColor);
 }
 .inactiveButton{
   fill: var(--inactiveIcon);
@@ -413,14 +404,9 @@ h3{text-align: left;}
   text-align: left;
   vertical-align: bottom;
 }
-
-
-
-
 .goodQuery{
   margin: 0;
   padding: 0;
-
 }
 .queryResult{
   height: 90vh;
@@ -429,7 +415,6 @@ h3{text-align: left;}
   margin-top: 10px;
   padding: 5px;
 }
-
 .tableTopBanner {
   margin: 0;
   padding:0;
@@ -502,16 +487,14 @@ table tr:first-child td {
 table tr td:first-child {
   border-left: 0;
 }
-
 table tr td:last-child {
   border-right: 0;
 }
-
 .invisible{
   display: none;
 }
 .currentPage{
-  background-color:var(--highlight);
+  background-color:lightskyblue;
 }
 div ul path g{
   padding: 0;
@@ -527,13 +510,11 @@ div ul path g{
   display: inline-flex;
   justify-content: space-between;
 }
-
 .tableBottomBanner div{
   position: relative;
   display: inline-block;
   bottom: 0;
 }
-
 .tableBottomBanner svg {
   margin-left: 5px;
 }
