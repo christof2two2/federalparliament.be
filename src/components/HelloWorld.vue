@@ -29,6 +29,15 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+  <hr class="divider">
+<div class="factSection">
+  <div><img  class="factImg" src="@/assets/stats.svg" alt=""></div>
+  <div class="grid-item"><p class="factText"><b>3 Milion words in dataset.</b></p></div>
+  <div class="grid-item"><p class="factText"><b>20 years of debates.</b></p></div>
+  <div><img class ="factImg" src="@/assets/time.svg" alt=""></div>
+  <div><img class ="factImg" src="@/assets/debat.svg" alt=""></div>
+  <div class="grid-item"><p class="factText"></p></div>
+</div> 
 </template>
 
 <script>

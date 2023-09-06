@@ -6,6 +6,8 @@ import queryView from '@/views/queryView.vue'
 import docsKG from '../components/docs/kg.vue'
 import docsHome from '../components/docs/home.vue'
 import docsQuery from '@/components/docs/query.vue'
+import docsScraper from '@/components/docs/scraper.vue'
+import docsFutureWork from '@/components/docs/futureWork.vue'
 import ontologyView from '@/components/docs/ontology.vue'
 import downloadsView from '@/views/downloadsView.vue'
 const routes = [
@@ -51,6 +53,16 @@ const routes = [
         path: 'ontology',
         name: 'docs.ontology',
         component: ontologyView
+      },
+      {
+        path: 'scraper',
+        name: 'docs.scraper',
+        component: docsScraper
+      },
+      {
+        path: 'futureWork',
+        name: 'docs.futureWork',
+        component: docsFutureWork
       },
     ]
   },

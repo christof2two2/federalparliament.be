@@ -17,7 +17,7 @@ export default {
     bottomBar,
   },
   created () {
-      document.title = "Belgian Parliament As A Knowledge Graph"
+      document.title = "Belgian Parliament as a Knowledge Graph"
   },
   methods:{
   },
@@ -43,6 +43,7 @@ export default {
   --inactiveIcon: grey;
   --popOutSection: #F1F1F1;
   --popOutElement: #F1F1F1;
+  --fullPopOutElement: #DFDFDF;
   --errorBackground:#F36870;
   --highlight: #41729F;
   text-align: center;
@@ -72,6 +73,7 @@ export default {
   --inactiveIcon: grey;
   --popOutSection: #212121;
   --popOutElement: #353535;
+  --fullPopOutElement: #353535;
   --errorBackground:#C73E1D;
   --highlight: #41729F;
   --pageButtonHighlight: #5885af;

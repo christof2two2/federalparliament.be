@@ -2,8 +2,18 @@
   <div>
     <h1>Documentation</h1>
 
-      <p>Information on how to query the dataset and some example queries.</p>
-      <p>Parliamentry debates are modeled as a Knowledge Graph (KG). A knowledge graph is a graphical representation of entities and their relationships, typically used to represent complex data in a structured and organized manner. The entities in a knowledge graph are linked together by relationships, which describe the connections between entities. This allows for easy navigation and understanding of the relationships between various concepts and entities.</p>
+      <p>Welcome to our documentation page! Here, you can find all the documentation on the dataset, can easily navigate through the provided sidebar on the left.</p>
+      <p>This project aims to simplify the process of searching through parliamentary debates. Currently, these debates are transcribed and published in PDF format on the parliament's website, making them difficult to search efficiently. Our approach involves two main steps: First, we extract information from these PDFs using a web scraping tool. Next, we store this data in the form of a knowledge graph (KG), enabling easy querying.</p>
+      <p>There are 3 sections in the documentation.</p>
+      <p>Onotlogy:
+This section will describe how the knowledge graph is structured wich you will need to know to be able to query it. 
+</p>
+<p>Querying:
+This provides information on ways to query the dataset and example queries.
+</p>
+<p>Scraper:
+Explains how the transcripts were transformed into a knowledge graph and a link to the source code of the scraping tool used to extract information from the transcripts.
+</p>
   </div>
 </template>
 <script>

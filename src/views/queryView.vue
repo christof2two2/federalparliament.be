@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <h1>Query</h1>
-    <p class="infoText">See <router-link class="rlink" to="/docs/query">documentation</router-link> for more information on how to query the dataset and example queries.</p>
+    <p class="infoText">See the <router-link class="rlink" to="/docs/query">documentation</router-link> for more information on how to query the dataset and example queries.</p>
     <div class="queryDiv">
     <textarea v-model="queryText" class="queryField" type="text" spellcheck="false"> </textarea>
     <div class='queryRunbuttonDiv'>   
@@ -112,15 +112,17 @@ export default {
   name: 'queryView',
   data(){
     return {
-    queryText:`PREFIX legis: <http://federalparliament.be/55/>
-PREFIX ns: <http://federalparliament.be/ns#>
-PREFIX MP: <http://federalparliament.be/MP/>
+    queryText:`#Example querrries that gets everyhting said by Tim Vandenput
+PREFIX legis: <http://federalparliament.be/kg/55/>
+PREFIX ns: <http://federalparliament.be/kg/ns#>
 
-SELECT ?asker ?question WHERE { 
-legis:questions ns:item ?question.
-?asker ns:asked ?question.
-?question ns:interviewee <http://federalparliament.be/politicalActors/Sophie%20Wilm%C3%A8s>.
-}`,
+SELECT  ?speech ?content WHERE {
+?person ns:fullName ?fullName.
+?person ns:speaker ?speech.
+?speech ns:segment ?segment.
+?segment ns:originalContent ?content
+FILTER(?fullName = 'Tim Vandenput')
+} `,
     tableData: reactive(
       { "header":[],
         "data":[],
@@ -329,7 +331,7 @@ p ,h2, a, h1, ul {
 }
 .queryField{
   width: 93%;
-  min-height: 200px;
+  min-height: 250px;
   resize: vertical;
   vertical-align: bottom;
   margin-bottom: 30px;

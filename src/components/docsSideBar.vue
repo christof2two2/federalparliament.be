@@ -8,6 +8,12 @@
            <div id="docs-query" :class="{'active': subIsActive('docs.ontology')}" >
            <router-link class="docLink"  :to="{name:'docs.ontology'}">Ontology</router-link>
               <ul class="submenu">
+                <li>
+                <a href="#parliamentBackground">Parliament Background</a>
+              </li>
+              <li>
+                <a href="#diagrams">How to Read the Diagrams</a>
+              </li>
               <li>
                 <a href="#base">Base</a>
               </li>
@@ -34,6 +40,14 @@
             </ul>
            </div>
            </li>
+
+         <li>
+           <div id="docs-query" :class="{'active': subIsActive('docs.scraper')}" >
+           <router-link class="docLink"  :to="{name:'docs.scraper'}">Scraper </router-link>
+
+           </div>
+           </li>
+
 
 
         </ul>

@@ -11,7 +11,7 @@
   <div class="grid-item"></div>
   <div class="grid-item"><p>Term 55</p></div>
   <div class="grid-item"><p>20 June 2019 - Present</p></div>
-  <div class="grid-item"><p>70Mb</p></div>
+  <div class="grid-item"><p>90Mb</p></div>
   <div class="grid-item"><div class="test"><a href="data/term55.ttl" download> <svg version="1.1" class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve">
           <g><g id="Download">
           <path d="M372.939,264.667c-6.641,0-12.03,5.39-12.03,12.03v84.212H24.061v-84.212c0-6.641-5.39-12.03-12.03-12.03

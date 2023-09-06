@@ -1,8 +1,9 @@
 <template>
   <div class="content">
     <h1>About this project</h1>
-    <p>Hello, i am Christophe and this project started as my master thesis. On this website I publish (parts of)the dataset created during my thesis and expand upon it.
-    </p>
+    <p>This project started as my master's thesis, 
+      and has evovled it a personal project to publish the dataset and tools that I created back then on this website.</p>
+
     
     <h1 id="contact">Contact</h1>
     <p>You can contact me in the following ways.</p>
