@@ -112,7 +112,7 @@ export default {
   name: 'queryView',
   data(){
     return {
-    queryText:`#Example querrries that gets everyhting said by Tim Vandenput
+    queryText:`#Example query that gets everyhting said by Tim Vandenput
 PREFIX legis: <http://federalparliament.be/kg/55/>
 PREFIX ns: <http://federalparliament.be/kg/ns#>
 
