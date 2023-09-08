@@ -249,7 +249,7 @@ FILTER(?fullName = 'Tim Vandenput')
     },
     query(){
       this.runningQuery = true;
-      var queryUrl = "http://federalparliament.be/sparql" + '?query=' + encodeURIComponent(this.queryText)+'&format=application%2Fsparql-results%2Bjson';
+      var queryUrl = "https://federalparliament.be/sparql" + '?query=' + encodeURIComponent(this.queryText)+'&format=application%2Fsparql-results%2Bjson';
       this.httpGetAsync(queryUrl,this.handleResponse);
     },
     httpGetAsync(theUrl,callback){

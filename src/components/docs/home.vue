@@ -5,7 +5,7 @@
       <p>Welcome to our documentation page! Here, you can find all the documentation on the dataset, can easily navigate through the provided sidebar on the left.</p>
       <p>This project aims to simplify the process of searching through parliamentary debates. Currently, these debates are transcribed and published in PDF format on the parliament's website, making them difficult to search efficiently. Our approach involves two main steps: First, we extract information from these PDFs using a web scraping tool. Next, we store this data in the form of a knowledge graph (KG), enabling easy querying.</p>
       <p>There are 3 sections in the documentation.</p>
-      <p>Onotlogy:
+      <p>Ontology:
 This section will describe how the knowledge graph is structured wich you will need to know to be able to query it. 
 </p>
 <p>Querying:

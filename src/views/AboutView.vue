@@ -2,7 +2,7 @@
   <div class="content">
     <h1>About this project</h1>
     <p>This project started as my master's thesis, 
-      and has evovled it a personal project to publish the dataset and tools that I created back then on this website.</p>
+      and has evolved into a personal project to publish the dataset and tools that I created back then on this website.</p>
 
     
     <h1 id="contact">Contact</h1>
